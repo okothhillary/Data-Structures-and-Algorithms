@@ -1,3 +1,5 @@
+using System.Runtime.ExceptionServices;
+
 public static class ArraySelector
 {
     public static void Run()
@@ -11,6 +13,30 @@ public static class ArraySelector
 
     private static int[] ListSelector(int[] list1, int[] list2, int[] select)
     {
-        return [];
+        List<int> result = new List<int>();
+        int i1 = 0, i2 = 0;
+
+        foreach (int s in select)
+        {
+            if (s == 1)
+            {          
+                
+                result.Add(list1[i1]);
+                i1++;
+                
+            }
+            else if (s == 2)
+            {               
+                
+                result.Add(list2[i2]);
+                i2++;
+                
+            }
+            else
+            {
+                throw new ArgumentException("Select array must contain only 1 or 2.");
+            }
+        }
+        return result.ToArray();
     }
 }
