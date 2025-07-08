@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../reactapp"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
