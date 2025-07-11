@@ -26,7 +26,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: Add multiple people with same priority
     // Expected Result: The people with same priority should come out in order they were added
-    // Defect(s) Found: Dequeue() used >= in comparison,If two or more items have the same priority, the loop keeps updating to the later one breaking FIFO order for same-priority items
+    // Defect(s) Found: Dequeue() used >= in comparison, if two or more items have the same priority, the loop keeps updating to the later one breaking FIFO order for same-priority items
     // Fixed by using > in the comparison to ensure that the first item with the highest priority is always returned.
     public void TestPriorityQueue_2()
     {
