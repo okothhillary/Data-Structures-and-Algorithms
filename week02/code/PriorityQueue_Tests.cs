@@ -39,4 +39,27 @@ public class PriorityQueueTests
         Assert.AreEqual("Eve", priorityQueue.Dequeue());
         Assert.AreEqual("Frank", priorityQueue.Dequeue());
     }
+
+    [TestMethod]
+    // Scenario: Attempt to dequeue from an empty queue
+    // Expected Result: An InvalidOperationException should be thrown with message "The queue is empty."
+    // Defect(s) Found: Scenario was yet to be tested...
+    public void TestPriorityQueue_EmptyDequeue()
+    {
+        var priorityQueue = new PriorityQueue();
+
+        try
+        {
+            priorityQueue.Dequeue();
+            Assert.Fail("Expected an InvalidOperationException to be thrown.");
+        }
+        catch (InvalidOperationException e)
+        {
+            Assert.AreEqual("The queue is empty.", e.Message);
+        }
+        catch (Exception e)
+        {
+            Assert.Fail($"Unexpected exception type: {e.GetType().Name}");
+        }
+    }
 }
