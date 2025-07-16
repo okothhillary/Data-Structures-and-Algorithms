@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Collections.Generic;
 
 public static class SetsAndMaps
 {
@@ -22,8 +23,31 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+
+        var wordList = new HashSet<string>();
+        var result = new List<string>();
+
+        foreach (var word in words)
+        {
+            if (word[0] == word[1])
+                continue; // Skip symmetric self-words like "aa"
+
+            var reversed = $"{word[1]}{word[0]}";
+
+            if (wordList.Contains(reversed))
+            {
+                result.Add($"{reversed} & {word}");
+            }
+            else
+            {
+                wordList.Add(word);
+            }
+        }
+
+        return result.ToArray();
     }
+
+
 
     /// <summary>
     /// Read a census file and summarize the degrees (education)
@@ -43,6 +67,21 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+            if (fields.Length >= 4)
+            {
+
+                string degree = fields[3].Trim();
+
+                if (degrees.ContainsKey(degree))
+                {
+                    degrees[degree]++;
+                }
+                else
+                {
+                    degrees[degree] = 1;
+                }
+            }
+
         }
 
         return degrees;
@@ -65,10 +104,44 @@ public static class SetsAndMaps
     /// using the [] notation.
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
-    {
-        // TODO Problem 3 - ADD YOUR CODE HERE
+{
+    // Normalise: remove spaces and convert to lowercase
+    word1 = word1.Replace(" ", "").ToLower();
+    word2 = word2.Replace(" ", "").ToLower();
+
+    if (word1.Length != word2.Length)
         return false;
+
+    Dictionary<char, int> charCount = new Dictionary<char, int>();
+
+    for (int i = 0; i < word1.Length; i++)
+    {
+        char c1 = word1[i];
+        char c2 = word2[i];
+
+        // Count c1
+        if (charCount.ContainsKey(c1))
+            charCount[c1]++;
+        else
+            charCount[c1] = 1;
+
+        // Subtract c2
+        if (charCount.ContainsKey(c2))
+            charCount[c2]--;
+        else
+            charCount[c2] = -1;
     }
+
+    // If all values are 0, it's an anagram
+    foreach (int count in charCount.Values)
+    {
+        if (count != 0)
+            return false;
+    }
+
+    return true;
+}
+
 
     /// <summary>
     /// This function will read JSON (Javascript Object Notation) data from the 
