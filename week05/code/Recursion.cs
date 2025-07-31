@@ -21,7 +21,6 @@ public static class Recursion
         }
         else
         {
-            // Recursive case: n^2 + SumSquaresRecursive(n - 1)
             return n * n + SumSquaresRecursive(n - 1);
         }    
 
@@ -111,7 +110,7 @@ public static class Recursion
     /// </summary>
     public static decimal CountWaysToClimb(int s, Dictionary<int, decimal>? remember = null)
 {
-    // Initialize the memoization dictionary if it's null
+    // I am Initialising the memoization dictionary if it's null
     if (remember == null)
     {
         remember = new Dictionary<int, decimal>();
@@ -133,7 +132,6 @@ public static class Recursion
         return remember[s];
     }
 
-    // Compute recursively and store in the dictionary
     decimal ways = CountWaysToClimb(s - 1, remember) +
                    CountWaysToClimb(s - 2, remember) +
                    CountWaysToClimb(s - 3, remember);
@@ -196,28 +194,27 @@ public static class Recursion
         if (maze.IsEnd(x, y))
         {
             results.Add(currPath.AsString());
-            currPath.RemoveAt(currPath.Count - 1); // Backtrack
+            currPath.RemoveAt(currPath.Count - 1);
             return;
         }
 
-        // Try all four possible directions: right, down, left, up
-        int[] dx = { 0, 1, 0, -1 }; // Changes in x coordinate
-        int[] dy = { 1, 0, -1, 0 }; // Changes in y coordinate
+        // Trying all four possible directions: right, down, left, up
+        int[] dx = { 0, 1, 0, -1 }; 
+        int[] dy = { 1, 0, -1, 0 };
 
         for (int i = 0; i < 4; i++)
         {
             int newX = x + dx[i];
             int newY = y + dy[i];
 
-            // Check if the move is valid, passing currPath as the first argument
+            // Check if the move is valid and passing currPath as the first argument
             if (maze.IsValidMove(currPath, newX, newY))
             {
-                // Recursively try the next position
+                // try the next position
                 SolveMaze(results, maze, newX, newY, currPath);
             }
         }
 
-        // Backtrack by removing current position
         currPath.RemoveAt(currPath.Count - 1);
     }
    
