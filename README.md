@@ -4,7 +4,7 @@ This is the starting repository for student work for CSE 212 at BYU-Idaho. It sh
 # Permissions to use
 This code is used for class assignments for CSE 212 at Brigham Young University-Idaho. Copying this code is a violation of the BYU-Idaho Honor Code.
 
-#Topics:
+# Topics:
 Stacks, Queues, Sets and Maps, Linked Lists, Trees
 
 To ensure that you are learning the concepts of the course, any code that you add to this starter template should be your own work. If you have any questions about this, ask your teacher.
